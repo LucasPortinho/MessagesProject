@@ -5,13 +5,13 @@ import actions from '../../utils/actions'
 import './styles.css'
 
 export const MessageInput = () => {
-    const [state, setState] = useState('')
-    const { dispatch } = useContext(HomeContext);
+    const [value, setValue] = useState('')
+    const { state: {loading}, dispatch } = useContext(HomeContext);
     const buttonRef = useRef(null);
     const inputRef = useRef(null)
  
     const sendMessage = () => {
-        const message = state.trim()
+        const message = value.trim()
         if (!message) {
             alert('O input não deve estar vazio.')
             return
@@ -24,7 +24,7 @@ export const MessageInput = () => {
 
         dispatch({ type: actions.ADD, payload })
 
-        setState('')
+        setValue('')
     }
   
     useEffect(() => {
@@ -45,8 +45,8 @@ export const MessageInput = () => {
 
     return (
         <div className="input-container">
-            <input type="text" className="input" onChange={(e) => setState(e.target.value)} value={state} ref={inputRef} placeholder="Envie sua mensagem"/>
-            <button className='button' ref={buttonRef} onClick={sendMessage}>
+            <input type="text" className="input" onChange={(e) => setValue(e.target.value)} value={value} ref={inputRef} placeholder="Envie sua mensagem"/>
+            <button className='button' ref={buttonRef} onClick={sendMessage} disabled={loading}>
                 <AiOutlineSend />
             </button>
         </div>

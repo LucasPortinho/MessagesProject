@@ -1,13 +1,14 @@
 import { createContext, useReducer } from "react";
 import P from 'prop-types'
 import { reducer } from "../../utils/reducer";
+import { data } from "./data";
 
 export const HomeContext = createContext()
 
 export const AppContext = ({ children }) => {
-    const [messages, dispatch] = useReducer(reducer, [])
+    const [state, dispatch] = useReducer(reducer, data)
 
-    return <HomeContext.Provider value={{ messages, dispatch }}>{children}</HomeContext.Provider>
+    return <HomeContext.Provider value={{ state, dispatch }}>{children}</HomeContext.Provider>
 }
 
 AppContext.propTypes = {
