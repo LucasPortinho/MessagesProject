@@ -13,7 +13,7 @@ export const reducer = (state, action) => {
                 body: ''
             }
 
-            // Here i should get the bot answer and sended to the user
+            // Here i should get the bot answer and send it to user
             const answer = {
                 userId: 2, 
                 id: state[state.length - 1].id + 2,
